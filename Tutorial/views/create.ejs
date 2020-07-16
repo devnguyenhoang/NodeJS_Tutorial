@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Demo Nodejs </title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <style>
+        body {
+            text-align: center;
+            background-color: #e4e3e3;
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        .header_top {
+            display: flex;
+            justify-content: center;
+        }
+
+        .header_top>a {
+            letter-spacing: 5px;
+            margin: 10px;
+            text-decoration: none;
+            font-size: 20px;
+            color: red;
+            font-weight: 600;
+        }
+
+        .create-blog form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .create-blog input,
+        .create-blog textarea {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+        }
+
+        .create-blog label {
+            display: block;
+            margin-top: 24px;
+        }
+
+        textarea {
+            height: 120px;
+        }
+
+        .create-blog button {
+            margin-top: 20px;
+            background: crimson;
+            color: white;
+            padding: 6px;
+            border: 0;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include("./partials/nav.ejs")  %>
+    <div class="main">
+        <h2> Create blog </h2>
+        <div class="create-blog">
+            <form action="/blogs" method="POST">
+                <label for="title">Blog title:</label>
+                <input type="text" id="title" name="name" required>
+                <label for="snippet">Blog snippet:</label>
+                <input type="text" id="snippet" name="skill" required>
+                <label for="body">Blog body:</label>
+                <textarea id="body" name="body" required></textarea>
+                <button>Submit</button>
+            </form>
+        </div>
+    </div>
+    <%- include("./partials/footer.ejs")  %>
+</body>
+
+</html>

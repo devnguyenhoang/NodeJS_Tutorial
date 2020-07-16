@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Demo Nodejs | <%= title %> </title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <style>
+      
+        body {
+            text-align: center;
+            background-color: #e4e3e3;
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        .header_top {
+            display: flex;
+            justify-content: center;
+        }
+
+        .header_top>a {
+            letter-spacing: 5px;
+            margin: 10px;
+            text-decoration: none;
+            font-size: 20px;
+            color: red;
+            font-weight: 600;
+        }
+
+        .blogs {
+            border: 1px solid red;
+            margin: 5px 10px;
+        }
+        .single{
+            text-decoration: none;
+        }
+        .details{
+          position: relative;
+        }
+        .delete{
+          position: absolute;
+          right: 30%;
+          top: 30%;
+          font-size: 49px;
+          cursor: pointer;
+          
+        }
+        
+    </style>
+</head>
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="details content">
+    <h2><%= blog.name %></h2>
+    <div class="content">
+      <p><%= blog.skill %></p>
+      <p><%= blog.body %></p>
+      <a class="delete" data-doc="<%= blog._id %>"><img src="https://img.icons8.com/cute-clipart/64/000000/delete-forever.png"/></a>
+    </div>
+    
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+
+  <script>
+    const trashcan = document.querySelector('a.delete');
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/blogs/${trashcan.dataset.doc}`;
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });
+    
+  </script>
+</body>
+</html>
